@@ -16,7 +16,7 @@ namespace RepairWorkDatabaseImplement.Implements
         public List<OrderViewModel> GetFullList()
         {
             using var context = new RepairWorkDatabase();
-            return context.Orders.Select(CreateModel).ToList();
+            return context.Orders.Include(rec => rec.Repair).ToList().Select(CreateModel).ToList();
         }
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
@@ -25,7 +25,10 @@ namespace RepairWorkDatabaseImplement.Implements
                 return null;
             }
             using var context = new RepairWorkDatabase();
-            return context.Orders.Where(rec => rec.Id.Equals(model.Id)).Select(CreateModel).ToList();
+            return context.Orders.Include(rec=>rec.Repair)
+                .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                .ToList()
+                .Select(CreateModel).ToList();
 
         }
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -35,25 +38,45 @@ namespace RepairWorkDatabaseImplement.Implements
                 return null;
             }
             using var context = new RepairWorkDatabase();
-            var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            var order = context.Orders.Include(rec => rec.Repair).FirstOrDefault(rec => rec.Id == model.Id);
             return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
         {
             using var context = new RepairWorkDatabase();
-            context.Orders.Add(CreateModel(model, new Order()));
-            context.SaveChanges();
+            using var transaction = context.Database.BeginTransaction();
+            try
+            {
+                context.Orders.Add(CreateModel(model, new Order()));
+                context.SaveChanges();
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
         public void Update(OrderBindingModel model)
         {
             using var context = new RepairWorkDatabase();
-            var element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            using var transaction = context.Database.BeginTransaction();
+            try
             {
-                throw new Exception("Элемент не найден");
+                var element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                if (element == null)
+                {
+                    throw new Exception("Элемент не найден");
+                }
+                CreateModel(model, element);
+                context.SaveChanges();
+                transaction.Commit();
             }
-            CreateModel(model, element);
-            context.SaveChanges();
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
         public void Delete(OrderBindingModel model)
         {
@@ -81,7 +104,6 @@ namespace RepairWorkDatabaseImplement.Implements
         }
         private static OrderViewModel CreateModel(Order order)
         {
-            using var context = new RepairWorkDatabase();
             return new OrderViewModel
             {
                 Id = order.Id,

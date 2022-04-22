@@ -2,6 +2,8 @@ using RepairWorkBusinessLogic.BusinessLogics;
 using RepairWorkContracts.BusinessLogicsContracts;
 using RepairWorkContracts.StorageContracts;
 using RepairWorkDatabaseImplement.Implements;
+using RepairWorkBusinessLogic.OfficePackage;
+using RepairWorkBusinessLogic.OfficePackage.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +55,9 @@ namespace RepairShopView
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<IRepairLogic, RepairLogic>(new
             HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToExcel, SaveToExcel>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToWord, SaveToWord>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToPdf, SaveToPdf>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

@@ -33,6 +33,10 @@ namespace RepairShopView
             this.toolStripMenuItemManual = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemComponent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRepairs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRepairList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRepairsComponents = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
@@ -46,7 +50,8 @@ namespace RepairShopView
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemManual});
+            this.toolStripMenuItemHelp,
+            this.toolStripMenuItemReports});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(907, 24);
@@ -75,6 +80,37 @@ namespace RepairShopView
             this.toolStripMenuItemRepairs.Size = new System.Drawing.Size(145, 22);
             this.toolStripMenuItemRepairs.Text = "Ремонт";
             this.toolStripMenuItemRepairs.Click += new System.EventHandler(this.toolStripMenuItemRepairs_Click);
+            //
+            // toolStripMenuItemReports
+            // 
+            this.toolStripMenuItemReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemRepairList,
+            this.toolStripMenuItemRepairsComponents,
+            this.toolStripMenuItemOrderList});
+            this.toolStripMenuItemReports.Name = "toolStripMenuItemReports";
+            this.toolStripMenuItemReports.Size = new System.Drawing.Size(60, 22);
+            this.toolStripMenuItemReports.Text = "Отчеты";
+            // 
+            // toolStripMenuItemRepairList
+            // 
+            this.toolStripMenuItemRepairList.Name = "toolStripMenuItemRepairList";
+            this.toolStripMenuItemRepairList.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItemRepairList.Text = "Список изделий";
+            this.toolStripMenuItemRepairList.Click += new System.EventHandler(this.toolStripMenuItemRepairList_Click);
+            // 
+            // toolStripMenuItemRepairsComponents
+            // 
+            this.toolStripMenuItemRepairsComponents.Name = "toolStripMenuItemRepairsComponents";
+            this.toolStripMenuItemRepairsComponents.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItemRepairsComponents.Text = "Изделия и их компоненты";
+            this.toolStripMenuItemRepairsComponents.Click += new System.EventHandler(this.toolStripMenuItemRepairsComponents_Click);
+            // 
+            // toolStripMenuItemOrderList
+            // 
+            this.toolStripMenuItemOrderList.Name = "toolStripMenuItemOrderList";
+            this.toolStripMenuItemOrderList.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItemOrderList.Text = "Список заказов";
+            this.toolStripMenuItemOrderList.Click += new System.EventHandler(this.toolStripMenuItemOrderList_Click);
             // 
             // dataGridView
             // 
@@ -172,5 +208,9 @@ namespace RepairShopView
         private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonIssuedOrder;
         private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReports;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairList;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairsComponents;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
     }
 }
