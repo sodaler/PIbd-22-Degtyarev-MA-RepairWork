@@ -136,18 +136,18 @@ namespace RepairWorkListImplement.Implements
         {
          
         var repairComponents = new Dictionary<int, (string, int)>();
-            foreach (var ii in repair.RepairComponents)
+            foreach (var rc in repair.RepairComponents)
             {
                 string componentName = string.Empty;
                 foreach (var component in source.Components)
                 {
-                    if (ii.Key == component.Id)
+                    if (rc.Key == component.Id)
                     {
                         componentName = component.ComponentName;
                         break;
                     }
                 }
-                repairComponents.Add(ii.Key, (componentName, ii.Value));
+                repairComponents.Add(rc.Key, (componentName, rc.Value));
             }
             return new RepairViewModel
             {

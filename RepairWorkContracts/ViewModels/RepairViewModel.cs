@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RepairWorkContracts.ViewModels
 {
     /// <summary>
-    /// 
+    /// Ремонт
     /// </summary>
     public class RepairViewModel
     {

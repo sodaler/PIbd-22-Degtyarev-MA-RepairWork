@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RepairWorkContracts.BindingModels
 {
     /// <summary>
-    /// 
+    /// Ремонт
     /// </summary>
     public class RepairBindingModel
     {
