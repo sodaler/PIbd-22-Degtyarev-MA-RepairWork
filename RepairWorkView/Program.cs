@@ -1,7 +1,8 @@
 using RepairWorkBusinessLogic.BusinessLogics;
 using RepairWorkContracts.BusinessLogicsContracts;
 using RepairWorkContracts.StorageContracts;
-using RepairWorkListImplement.Implements;
+using RepairWorkFileImplement;
+using RepairWorkFileImplement.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace RepairShopView
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Container.Resolve<FormMain>());
+            FileDataListSingleton.Save();
         }
         private static IUnityContainer BuildUnityContainer()
         {
