@@ -23,6 +23,7 @@ namespace RepairWorkBusinessLogic.BusinessLogics
             _orderStorage.Insert(new OrderBindingModel
             {
                 RepairId = model.RepairId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -45,6 +46,7 @@ namespace RepairWorkBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 RepairId = order.RepairId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -72,6 +74,7 @@ namespace RepairWorkBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 RepairId = order.RepairId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -111,6 +114,7 @@ namespace RepairWorkBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 RepairId = order.RepairId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

@@ -37,6 +37,7 @@ namespace RepairShopView
             this.toolStripMenuItemRepairList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRepairsComponents = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOrderList = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
@@ -62,7 +63,8 @@ namespace RepairShopView
             // 
             this.toolStripMenuItemManual.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemComponent,
-            this.toolStripMenuItemRepairs});
+            this.toolStripMenuItemRepairs,
+            this.ToolStripMenuItemClients});
             this.toolStripMenuItemManual.Name = "toolStripMenuItemManual";
             this.toolStripMenuItemManual.Size = new System.Drawing.Size(94, 20);
             this.toolStripMenuItemManual.Text = "Справочники";
@@ -70,14 +72,14 @@ namespace RepairShopView
             // toolStripMenuItemComponent
             // 
             this.toolStripMenuItemComponent.Name = "toolStripMenuItemComponent";
-            this.toolStripMenuItemComponent.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItemComponent.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItemComponent.Text = "Компоненты";
             this.toolStripMenuItemComponent.Click += new System.EventHandler(this.toolStripMenuItemComponent_Click);
             // 
             // toolStripMenuItemRepairs
             // 
             this.toolStripMenuItemRepairs.Name = "toolStripMenuItemRepairs";
-            this.toolStripMenuItemRepairs.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItemRepairs.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItemRepairs.Text = "Ремонт";
             this.toolStripMenuItemRepairs.Click += new System.EventHandler(this.toolStripMenuItemRepairs_Click);
             //
@@ -171,7 +173,14 @@ namespace RepairShopView
             this.buttonUpdate.Text = "Обновить список";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            //
+            // ToolStripMenuItemClients
             // 
+            this.ToolStripMenuItemClients.Name = "ToolStripMenuItemClients";
+            this.ToolStripMenuItemClients.Size = new System.Drawing.Size(175, 22);
+            this.ToolStripMenuItemClients.Text = "Клиенты";
+            this.ToolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
+            //  
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -212,5 +221,6 @@ namespace RepairShopView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairList;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairsComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
     }
 }

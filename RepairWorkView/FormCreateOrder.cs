@@ -17,12 +17,14 @@ namespace RepairShopView
     {
         private readonly IRepairLogic _logicR;
         private readonly IOrderLogic _logicO;
+        private readonly IClientLogic _logicC;
 
-        public FormCreateOrder(IRepairLogic logicI, IOrderLogic logicO)
+        public FormCreateOrder(IRepairLogic logicI, IOrderLogic logicO, IClientLogic _logicC)
         {
             InitializeComponent();
             _logicR = logicI;
             _logicO = logicO;
+            _logicC = logicC;
         }
         private void CalcSum()
         {
@@ -59,6 +61,14 @@ namespace RepairShopView
                     comboBoxRepair.DataSource = repairList;
                     comboBoxRepair.SelectedItem = null;
                 }
+                 List<ClientViewModel> listC = _logicC.Read(null);
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
+                }
             }
             catch (Exception ex)
             {
@@ -81,10 +91,16 @@ namespace RepairShopView
                MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     RepairId = Convert.ToInt32(comboBoxRepair.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
