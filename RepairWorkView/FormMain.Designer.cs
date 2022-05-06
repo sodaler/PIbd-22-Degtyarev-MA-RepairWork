@@ -40,10 +40,10 @@ namespace RepairShopView
             this.ToolStripMenuItemClients = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
-            this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
-            this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.toolStripMenuItemLaunchWork = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemImplementers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,8 @@ namespace RepairShopView
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemHelp,
-            this.toolStripMenuItemReports});
+            this.toolStripMenuItemReports,
+            this.ToolStripMenuItemLaunchWork});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(907, 24);
@@ -113,7 +114,21 @@ namespace RepairShopView
             this.toolStripMenuItemOrderList.Size = new System.Drawing.Size(219, 22);
             this.toolStripMenuItemOrderList.Text = "Список заказов";
             this.toolStripMenuItemOrderList.Click += new System.EventHandler(this.toolStripMenuItemOrderList_Click);
+            //
+            // toolStripMenuItemLaunchWork
             // 
+            this.toolStripMenuItemLaunchWork.Name = "toolStripMenuItemLaunchWork";
+            this.toolStripMenuItemLaunchWork.Size = new System.Drawing.Size(136, 29);
+            this.toolStripMenuItemLaunchWork.Text = "Запуск работ";
+            this.toolStripMenuItemLaunchWork.Click += new System.EventHandler(this.toolStripMenuItemLaunchWork_Click);
+            // 
+            // toolStripMenuItemImplementers
+            // 
+            this.toolStripMenuItemImplementers.Name = "toolStripMenuItemImplementers";
+            this.toolStripMenuItemImplementers.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItemImplementers.Text = "Исполнители";
+            this.toolStripMenuItemImplementers.Click += new System.EventHandler(this.toolStripMenuItemImplementers_Click);
+            //  
             // dataGridView
             // 
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
@@ -133,27 +148,7 @@ namespace RepairShopView
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
             this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
-            // 
-            // buttonTakeOrderInWork
-            // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(705, 122);
-            this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
-            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(164, 51);
-            this.buttonTakeOrderInWork.TabIndex = 3;
-            this.buttonTakeOrderInWork.Text = "Отдать на выполнение";
-            this.buttonTakeOrderInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeOrderInWork.Click += new System.EventHandler(this.buttonTakeOrderInWork_Click);
-            // 
-            // buttonOrderReady
-            // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(705, 212);
-            this.buttonOrderReady.Name = "buttonOrderReady";
-            this.buttonOrderReady.Size = new System.Drawing.Size(164, 44);
-            this.buttonOrderReady.TabIndex = 4;
-            this.buttonOrderReady.Text = "Заказ готов";
-            this.buttonOrderReady.UseVisualStyleBackColor = true;
-            this.buttonOrderReady.Click += new System.EventHandler(this.buttonOrderReady_Click);
-            // 
+            //
             // buttonIssuedOrder
             // 
             this.buttonIssuedOrder.Location = new System.Drawing.Point(705, 300);
@@ -188,8 +183,6 @@ namespace RepairShopView
             this.ClientSize = new System.Drawing.Size(907, 473);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonIssuedOrder);
-            this.Controls.Add(this.buttonOrderReady);
-            this.Controls.Add(this.buttonTakeOrderInWork);
             this.Controls.Add(this.buttonCreateOrder);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -213,8 +206,6 @@ namespace RepairShopView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairs;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonCreateOrder;
-        private System.Windows.Forms.Button buttonTakeOrderInWork;
-        private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonIssuedOrder;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemReports;
@@ -222,5 +213,7 @@ namespace RepairShopView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRepairsComponents;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOrderList;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImplementers;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLaunchWork;
     }
 }
