@@ -2,6 +2,7 @@
 using RepairWorkContracts.BindingModels;
 using RepairWorkContracts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace RepairWorkRestApi.Controllers
 {
@@ -10,9 +11,11 @@ namespace RepairWorkRestApi.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IClientLogic _logic;
-        public ClientController(IClientLogic logic)
+        private readonly IMessageInfoLogic _messageLogic;
+        public ClientController(IClientLogic logic, IMessageInfoLogic messageLogic)
         {
             _logic = logic;
+            _messageLogic = messageLogic;
         }
         [HttpGet]
         public ClientViewModel Login(string login, string password)
@@ -26,6 +29,8 @@ namespace RepairWorkRestApi.Controllers
         }
         [HttpPost]
         public void Register(ClientBindingModel model) => _logic.CreateOrUpdate(model);
+        [HttpGet]
+        public List<MessageInfoViewModel> GetClientsMessages(int clientId) => _messageLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
         [HttpPost]
         public void UpdateData(ClientBindingModel model) => _logic.CreateOrUpdate(model);
     }
