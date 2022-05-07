@@ -19,6 +19,30 @@ namespace RepairWorkDatabaseImplement.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("RepairWorkDatabaseImplement.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClientFIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });    
+
             modelBuilder.Entity("RepairWorkDatabaseImplement.Models.Component", b =>
                 {
                     b.Property<int>("Id")
@@ -42,6 +66,9 @@ namespace RepairWorkDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -61,6 +88,8 @@ namespace RepairWorkDatabaseImplement.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("RepairId");
 
@@ -113,11 +142,19 @@ namespace RepairWorkDatabaseImplement.Migrations
 
             modelBuilder.Entity("RepairWorkDatabaseImplement.Models.Order", b =>
                 {
+                    b.HasOne("RepairWorkDatabaseImplement.Models.Client", "Client")
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                    
                     b.HasOne("RepairWorkDatabaseImplement.Models.Repair", "Repair")
                         .WithMany("Orders")
                         .HasForeignKey("RepairId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");    
 
                     b.Navigation("Repair");
                 });
@@ -140,6 +177,11 @@ namespace RepairWorkDatabaseImplement.Migrations
 
                     b.Navigation("Repair");
                 });
+
+            modelBuilder.Entity("RepairWorkDatabaseImplement.Models.Client", b =>
+                {
+                    b.Navigation("Orders");
+                });    
 
             modelBuilder.Entity("RepairWorkDatabaseImplement.Models.Component", b =>
                 {

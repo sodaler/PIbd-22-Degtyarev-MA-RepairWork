@@ -9,6 +9,7 @@ namespace RepairWorkDatabaseImplement.Models
     public class Order
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         [Required]
         public int RepairId { get; set; }
         [Required]
@@ -21,5 +22,6 @@ namespace RepairWorkDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Repair Repair { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
