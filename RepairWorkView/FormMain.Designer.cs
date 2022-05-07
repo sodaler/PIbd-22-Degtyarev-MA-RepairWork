@@ -44,6 +44,7 @@ namespace RepairShopView
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.toolStripMenuItemLaunchWork = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemImplementers = new System.Windows.Forms.ToolStripMenuItem();
+            this.письмаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,8 @@ namespace RepairShopView
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemHelp,
             this.toolStripMenuItemReports,
-            this.ToolStripMenuItemLaunchWork});
+            this.ToolStripMenuItemLaunchWork,
+            this.письмаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(907, 24);
@@ -65,7 +67,8 @@ namespace RepairShopView
             this.toolStripMenuItemManual.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemComponent,
             this.toolStripMenuItemRepairs,
-            this.ToolStripMenuItemClients});
+            this.ToolStripMenuItemClients,
+            this.письмаToolStripMenuItem});
             this.toolStripMenuItemManual.Name = "toolStripMenuItemManual";
             this.toolStripMenuItemManual.Size = new System.Drawing.Size(94, 20);
             this.toolStripMenuItemManual.Text = "Справочники";
@@ -176,6 +179,13 @@ namespace RepairShopView
             this.ToolStripMenuItemClients.Text = "Клиенты";
             this.ToolStripMenuItemClients.Click += new System.EventHandler(this.toolStripMenuItemClients_Click);
             //  
+            // письмаToolStripMenuItem
+            // 
+            this.письмаToolStripMenuItem.Name = "письмаToolStripMenuItem";
+            this.письмаToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.письмаToolStripMenuItem.Text = "Письма";
+            this.письмаToolStripMenuItem.Click += new System.EventHandler(this.письмаToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -215,5 +225,6 @@ namespace RepairShopView
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemClients;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImplementers;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLaunchWork;
+        private ToolStripMenuItem письмаToolStripMenuItem;
     }
 }

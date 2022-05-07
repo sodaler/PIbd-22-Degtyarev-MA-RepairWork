@@ -8,16 +8,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RepairWorkBusinessLogic.MailWorker;
 
 namespace RepairWorkBusinessLogic.BusinessLogics
 {
     public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IClientStorage _clientStorage;
+        private readonly AbstractMailWorker _mailWorker;
+
+        public OrderLogic(IOrderStorage orderStorage, IClientStorage clientStorage, AbstractMailWorker mailWorker)
         {
             _orderStorage = orderStorage;
+            _clientStorage = clientStorage;
+            _mailWorker = mailWorker;
         }
+
         public void CreateOrder(CreateOrderBindingModel model)
         {
             _orderStorage.Insert(new OrderBindingModel
@@ -28,6 +35,12 @@ namespace RepairWorkBusinessLogic.BusinessLogics
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят
+            });
+            _mailWorker.MailSendAsync(new MailSendInfoBindingModel
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = model.ClientId })?.Email,
+                Subject = "Ваш заказ создан",
+                Text = $"Заказ от {DateTime.Now} на сумму {model.Sum} был создан"
             });
         }
 
@@ -53,6 +66,12 @@ namespace RepairWorkBusinessLogic.BusinessLogics
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Выдан
+            });
+            _mailWorker.MailSendAsync(new MailSendInfoBindingModel
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = order.ClientId })?.Email,
+                Subject = $"Статус заказа № {order.Id} обновлен",
+                Text = $"Заказ № {order.Id} передан в работу"
             });
         }
 
@@ -82,6 +101,12 @@ namespace RepairWorkBusinessLogic.BusinessLogics
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Готов
+            });
+            _mailWorker.MailSendAsync(new MailSendInfoBindingModel
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = order.ClientId })?.Email,
+                Subject = $"Статус заказа № {order.Id} обновлен",
+                Text = $"Заказ № {order.Id} передан в работу"
             });
         }
 
@@ -123,6 +148,12 @@ namespace RepairWorkBusinessLogic.BusinessLogics
                 DateCreate = order.DateCreate,
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
+            });
+            _mailWorker.MailSendAsync(new MailSendInfoBindingModel
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = order.ClientId })?.Email,
+                Subject = $"Статус заказа № {order.Id} обновлен",
+                Text = $"Заказ № {order.Id} передан в работу"
             });
         }
     }

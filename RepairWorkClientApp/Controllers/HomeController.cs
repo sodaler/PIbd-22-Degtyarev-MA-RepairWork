@@ -139,5 +139,15 @@ namespace RepairWorkClientApp.Controllers
             RepairViewModel rep = APIClient.GetRequest<RepairViewModel>($"api/main/getrepair?repairId={repair}");
             return count * rep.Price;
         }
+
+        [HttpGet]
+        public IActionResult Messages()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/GetClientsMessages?clientId={Program.Client.Id}"));
+        }
     }
 }
