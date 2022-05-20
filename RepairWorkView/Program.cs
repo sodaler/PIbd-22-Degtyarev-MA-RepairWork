@@ -14,6 +14,7 @@ using Unity.Lifetime;
 using System.Threading;
 using RepairWorkBusinessLogic.MailWorker;
 using System.Configuration;
+using RepairWorkContracts.Attributes;
 
 namespace RepairShopView
 {
@@ -64,12 +65,14 @@ namespace RepairShopView
             currentContainer.RegisterType<IClientStorage, ClientStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMessageInfoStorage, MessageInfoStorage>(new HierarchicalLifetimeManager());
+			currentContainer.RegisterType<IBackUpInfo, BackUpInfo>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IRepairLogic, RepairLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IClientLogic, ClientLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerLogic, ImplementerLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMessageInfoLogic, MessageInfoLogic>(new HierarchicalLifetimeManager());
+			currentContainer.RegisterType<IBackUpLogic, BackUpLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IWorkProcess, WorkModeling>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<AbstractSaveToExcel, SaveToExcel>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<AbstractSaveToWord, SaveToWord>(new HierarchicalLifetimeManager());
@@ -78,5 +81,53 @@ namespace RepairShopView
             return currentContainer;
         }
         private static void MailCheck(object obj) => Container.Resolve<AbstractMailWorker>().MailCheck();
+		
+		public static void ConfigGrid<T>(List<T> data, DataGridView grid)
+        {
+            var type = typeof(T);
+            var config = new List<string>();
+            grid.Columns.Clear();
+            foreach (var prop in type.GetProperties())
+            {
+                // получаем список атрибутов
+                var attributes = prop.GetCustomAttributes(typeof(ColumnAttribute), true);
+                if (attributes != null && attributes.Length > 0)
+                {
+                    foreach (var attr in attributes)
+                    {
+                        // ищем нужный нам атрибут
+                        if (attr is ColumnAttribute columnAttr)
+                        {
+                            config.Add(prop.Name);
+                            var column = new DataGridViewTextBoxColumn
+                            {
+                                Name = prop.Name,
+                                ReadOnly = true,
+                                HeaderText = columnAttr.Title,
+                                Visible = columnAttr.Visible,
+                                Width = columnAttr.Width
+                            };
+                            if (columnAttr.GridViewAutoSize != GridViewAutoSize.None)
+                            {
+                                column.AutoSizeMode = (DataGridViewAutoSizeColumnMode)Enum.Parse(typeof(DataGridViewAutoSizeColumnMode),
+                                    columnAttr.GridViewAutoSize.ToString());
+                            }
+                            grid.Columns.Add(column);
+                        }
+                    }
+                }
+            }
+            // добавляем строки
+            foreach (var elem in data)
+            {
+                var objs = new List<object>();
+                foreach (var conf in config)
+                {
+                    var value = elem.GetType().GetProperty(conf).GetValue(elem);
+                    objs.Add(value);
+                }
+                grid.Rows.Add(objs.ToArray());
+            }
+        }
     }
 }

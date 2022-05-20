@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
-namespace RepairShopView
+namespace RepairWorkView
 {
     public partial class FormMain : Form
     {
@@ -20,15 +20,17 @@ namespace RepairShopView
         private readonly IClientLogic _clientLogic;
         private readonly IWorkProcess _workProcess;
         private readonly IImplementerLogic _implementerLogic;
+		private readonly IBackUpLogic _backUpLogic;
 
-        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic, IWorkProcess workProcess, IImplementerLogic implementerLogic, IClientLogic clientLogic)
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic, IWorkProcess workProcess, IImplementerLogic implementerLogic, IClientLogic clientLogic, IBackUpLogic backUpLogic)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             _reportLogic = reportLogic;
             _workProcess = workProcess;
             _implementerLogic = implementerLogic;
-            _clientLogic = clientLogic; 
+            _clientLogic = clientLogic;
+			_backUpLogic = backUpLogic;
         }
 
         private void toolStripMenuItemComponent_Click(object sender, EventArgs e)
@@ -84,15 +86,7 @@ namespace RepairShopView
         {
             try
             {
-                var list = _orderLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.DataSource = list;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[3].Visible = false;
-                    dataGridView.Columns[5].Visible = false;
-                }
+                Program.ConfigGrid(_orderLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
@@ -148,6 +142,26 @@ namespace RepairShopView
         {
             var form = Program.Container.Resolve<FormMessages>();
             form.ShowDialog();
+        }
+		
+		private void создатьБэкапToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_backUpLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        _backUpLogic.CreateBackUp(new BackUpSaveBinidngModel { FolderName = fbd.SelectedPath });
+                        MessageBox.Show("Бэкап создан", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
