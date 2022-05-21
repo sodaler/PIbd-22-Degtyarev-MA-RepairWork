@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using RepairWorkContracts.BindingModels;
 using RepairWorkContracts.BusinessLogicsContracts;
-using RepairWorkContracts.StoragesContracts;
+using RepairWorkContracts.StorageContracts;
 using RepairWorkContracts.ViewModels;
 
-namespace RepairBusinessLogic.BusinessLogics
+namespace RepairWorkBusinessLogic.BusinessLogics
 {
     public class WarehouseLogic : IWarehouseLogic
     {
