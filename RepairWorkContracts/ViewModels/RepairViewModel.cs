@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using RepairWorkContracts.Attributes;
 
 namespace RepairWorkContracts.ViewModels
 {
-    /// <summary>
-    /// Ремонт
-    /// </summary>
     public class RepairViewModel
     {
+        [Column(title: "Номер", width: 50)]
         public int Id { get; set; }
-        [DisplayName("Название ремонтной работы")]
+
+        [Column(title: "Название ремонта", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string RepairName { get; set; }
-        [DisplayName("Цена")]
+
+        [Column(title: "Цена", width: 100)]
         public decimal Price { get; set; }
         public Dictionary<int, (string, int)> RepairComponents { get; set; }
-
     }
 }

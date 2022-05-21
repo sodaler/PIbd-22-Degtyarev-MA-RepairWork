@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel;
+using RepairWorkContracts.Attributes;
 
 namespace RepairWorkContracts.ViewModels
 {
     public class ClientViewModel
     {
+        [Column(title: "Номер", width: 50)]
         public int Id { get; set; }
 
-        [DisplayName("ФИО")]
+        [Column(title: "Клиент", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ClientFIO { get; set; }
 
-        [DisplayName("Логин")]
+        [Column(title: "Логин", width: 150)]
         public string Email { get; set; }
 
-        [DisplayName("Пароль")]
+        [Column(title: "Пароль", width: 100)]
         public string Password { get; set; }
     }
 }

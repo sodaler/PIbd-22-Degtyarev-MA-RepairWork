@@ -77,19 +77,7 @@ namespace RepairShopView
             try
             {
                 var list = _logic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.Rows.Clear();
-                    foreach (var rp in list)
-                    {
-                        string stringComponents = string.Empty;
-                        foreach (var comp in rp.RepairComponents)
-                        {
-                            stringComponents += comp.Key + ") " + comp.Value.Item1 + ": " + comp.Value.Item2 + ", ";
-                        }
-                        dataGridView.Rows.Add(new object[] { rp.Id, rp.RepairName, rp.Price, stringComponents[0..^2] });
-                    }
-                }
+                Program.ConfigGrid(list, dataGridView);
             }
             catch (Exception ex)
             {

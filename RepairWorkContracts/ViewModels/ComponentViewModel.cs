@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using RepairWorkContracts.Attributes;
 
 namespace RepairWorkContracts.ViewModels
 {
-    /// <summary>
-    /// Компонент
-    /// </summary>
     public class ComponentViewModel
     {
+        [Column(title: "Номер", width: 50)]
         public int Id { get; set; }
-        [DisplayName("Название компонента")]
+        [Column(title: "Название материала", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
-    } 
+
+    }
 }
