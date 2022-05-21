@@ -147,10 +147,5 @@ namespace RepairWorkListImplement.Implements
                 WarehouseComponents = warehouseComonents
             };
         }
-
-        public bool CheckCounts(CheckComponentsCount model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
