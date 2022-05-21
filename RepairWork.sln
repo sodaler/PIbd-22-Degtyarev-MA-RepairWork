@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepairWorkBusinessLogic", "RepairWorkBusinessLogic\RepairWorkBusinessLogic.csproj", "{3572D8B1-85EC-4381-A9D1-FB77A6BF139E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkBusinessLogic", "RepairWorkBusinessLogic\RepairWorkBusinessLogic.csproj", "{3572D8B1-85EC-4381-A9D1-FB77A6BF139E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepairWorkContracts", "RepairWorkContracts\RepairWorkContracts.csproj", "{78AAD53D-B5C9-4A4B-80EE-910ECE468EDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkContracts", "RepairWorkContracts\RepairWorkContracts.csproj", "{78AAD53D-B5C9-4A4B-80EE-910ECE468EDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepairWorkListImplement", "RepairWorkListImplement\RepairWorkListImplement.csproj", "{2A10A372-B414-401B-806A-9EC3680B9F11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkListImplement", "RepairWorkListImplement\RepairWorkListImplement.csproj", "{2A10A372-B414-401B-806A-9EC3680B9F11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkView", "RepairWorkView\RepairWorkView.csproj", "{AB51892C-8479-4445-AD1C-4C90671E42E3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkFileImplement", "RepairWorkFileImplement\RepairWorkFileImplement.csproj", "{D1ED11B4-470D-43C6-A71A-0402A7FF35D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{AB51892C-8479-4445-AD1C-4C90671E42E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB51892C-8479-4445-AD1C-4C90671E42E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB51892C-8479-4445-AD1C-4C90671E42E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1ED11B4-470D-43C6-A71A-0402A7FF35D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1ED11B4-470D-43C6-A71A-0402A7FF35D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1ED11B4-470D-43C6-A71A-0402A7FF35D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1ED11B4-470D-43C6-A71A-0402A7FF35D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

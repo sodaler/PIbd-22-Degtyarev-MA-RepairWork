@@ -2,7 +2,6 @@
 using RepairWorkContracts.BusinessLogicsContracts;
 using RepairWorkContracts.Enums;
 using RepairWorkContracts.StorageContracts;
-using RepairWorkContracts.StoragesContracts;
 using RepairWorkContracts.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,11 +14,9 @@ namespace RepairWorkBusinessLogic.BusinessLogics
     public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        private readonly IWarehouseStorage _warehouseStorage;
-        public OrderLogic(IOrderStorage orderStorage, IWarehouseStorage warehouseStorage)
+        public OrderLogic(IOrderStorage orderStorage)
         {
             _orderStorage = orderStorage;
-            _warehouseStorage = warehouseStorage;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -109,14 +106,6 @@ namespace RepairWorkBusinessLogic.BusinessLogics
             if (!order.Status.Equals(Enum.GetName(typeof(OrderStatus),0)))
             {
                 throw new Exception("Заказ не принят");
-            }
-            if (!_warehouseStorage.CheckCounts(new CheckComponentsCount
-            {
-                RepairId = order.RepairId,
-                Count = order.Count
-            }))
-            {
-                throw new Exception("Компонентов не достаточно");
             }
             _orderStorage.Update(new OrderBindingModel
             {
