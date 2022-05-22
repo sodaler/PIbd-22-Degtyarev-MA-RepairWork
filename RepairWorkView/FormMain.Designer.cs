@@ -39,6 +39,8 @@ namespace RepairShopView
             this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.toolStripMenuItemWarehouses = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemWarehouseReplenish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +48,8 @@ namespace RepairShopView
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemManual});
+            this.toolStripMenuItemManual,
+            this.toolSrtipMenuItemWarehouseReplenish});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(907, 24);
@@ -57,7 +60,8 @@ namespace RepairShopView
             // 
             this.toolStripMenuItemManual.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemComponent,
-            this.toolStripMenuItemRepairs});
+            this.toolStripMenuItemRepairs,
+            this.toolStripMenuItemWarehouses});
             this.toolStripMenuItemManual.Name = "toolStripMenuItemManual";
             this.toolStripMenuItemManual.Size = new System.Drawing.Size(94, 20);
             this.toolStripMenuItemManual.Text = "Справочники";
@@ -65,17 +69,31 @@ namespace RepairShopView
             // toolStripMenuItemComponent
             // 
             this.toolStripMenuItemComponent.Name = "toolStripMenuItemComponent";
-            this.toolStripMenuItemComponent.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItemComponent.Size = new System.Drawing.Size(168, 22);
             this.toolStripMenuItemComponent.Text = "Компоненты";
             this.toolStripMenuItemComponent.Click += new System.EventHandler(this.toolStripMenuItemComponent_Click);
             // 
             // toolStripMenuItemRepairs
             // 
             this.toolStripMenuItemRepairs.Name = "toolStripMenuItemRepairs";
-            this.toolStripMenuItemRepairs.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItemRepairs.Size = new System.Drawing.Size(168, 22);
             this.toolStripMenuItemRepairs.Text = "Ремонт";
             this.toolStripMenuItemRepairs.Click += new System.EventHandler(this.toolStripMenuItemRepairs_Click);
             // 
+            // toolStripMenuItemWarehouses
+            // 
+            this.toolStripMenuItemWarehouses.Name = "toolStripMenuItemWarehouses";
+            this.toolStripMenuItemWarehouses.Size = new System.Drawing.Size(168, 22);
+            this.toolStripMenuItemWarehouses.Text = "Склады";
+            this.toolStripMenuItemWarehouses.Click += new System.EventHandler(this.toolStripMenuItemWarehouses_Click);
+            // 
+            // toolStripMenuItemWarehouseReplenish
+            //
+            this.toolStripMenuItemFillWarehouse.Name = "toolStripMenuItemWarehouseReplenish";
+            this.toolStripMenuItemFillWarehouse.Size = new System.Drawing.Size(123, 18);
+            this.toolStripMenuItemFillWarehouse.Text = "Пополнить склад";
+            this.toolStripMenuItemFillWarehouse.Click += new System.EventHandler(this.toolStripMenuItemWarehouseReplenish_Click);
+            //
             // dataGridView
             // 
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
@@ -172,5 +190,7 @@ namespace RepairShopView
         private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonIssuedOrder;
         private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouses;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemWarehouseReplenish;
     }
 }
